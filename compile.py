@@ -2,24 +2,25 @@ import os
 os.system("clear")
 print("Please type the filename of your Cobalt+ program")
 filename = input("> ")
-with open(filename) as f:
-    src = f.readlines()
+src = open(filename).readlines()
 #print(src)
 binvar = ""
 bin = []
-progress = 1
+progress = 0
 error = 0
 for codeln in src:
-    if codeln[:5] == "print":
-        if codeln[6:9] == "str":
-            bin.append("ps" +str(codeln[11:]).replace("\n","") +"!")
-        elif codeln[6:9] == "var":
-            bin.append("pv" +codeln[11])
-    elif codeln[:4] == "var.":
-        if codeln[4:9] == "create":
-            bin.append("vc" +codeln[11])
-        if codeln[4:7] == "set":
-            bin.append("vs" +codeln[9] +codeln[11:])
+    if codeln[:10] == "print str ":
+        bin.append("ps" +codeln[10:])
+    elif codeln[:10] == "print var ":
+        bin.append("pv" +codeln[10])
+    elif codeln[:11] == "var.create ":
+        bin.append("vc" +codeln[11])
+    elif codeln[:8] == "var.set ":
+        bin.append("vs" +codeln[8] +codeln[10:] +"!")
+    elif codeln[:10] == "var.input ":
+        bin.append("vi" +codeln[10])
+    elif codeln[:7] == "run.me ":
+        bin.append("rm" +codeln[7])
     else:
         error = 1
         print("ERROR at line " +str(progress) +"!")
