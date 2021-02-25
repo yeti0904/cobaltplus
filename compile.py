@@ -2,7 +2,7 @@ import os
 os.system("clear")
 print("Please type the filename of your Cobalt+ program")
 filename = input("> ")
-src = open(filename).readlines()
+src = open(filename).read().splitlines()
 #print(src)
 binvar = ""
 bin = []
@@ -13,12 +13,22 @@ for codeln in src:
         bin.append("ps" +codeln[10:])
     elif codeln[:10] == "print var ":
         bin.append("pv" +codeln[10])
+    elif codeln == "print nln":
+        bin.append("pn")
     elif codeln[:11] == "var.create ":
         bin.append("vc" +codeln[11])
     elif codeln[:8] == "var.set ":
         bin.append("vs" +codeln[8] +codeln[10:] +"!")
     elif codeln[:10] == "var.input ":
         bin.append("vi" +codeln[10])
+    elif codeln == "var.del":
+        bin.append("vd")
+    elif codeln == "console.clear":
+        bin.append("cc")
+    elif codeln == "console.hide":
+        bin.append("ch")
+    elif codeln == "console.show":
+        bin.append("cs")
     elif codeln[:7] == "run.me ":
         bin.append("rm" +codeln[7])
     else:
