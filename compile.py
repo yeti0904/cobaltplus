@@ -13,8 +13,6 @@ for codeln in src:
         bin.append("ps" +codeln[10:])
     elif codeln[:10] == "print var ":
         bin.append("pv" +codeln[10])
-    elif codeln == "print nln":
-        bin.append("pn")
     elif codeln[:11] == "var.create ":
         bin.append("vc" +codeln[11])
     elif codeln[:8] == "var.set ":
