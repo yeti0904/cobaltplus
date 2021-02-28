@@ -10,7 +10,7 @@ progress = 0
 error = 0
 for codeln in src:
     if codeln[:10] == "print str ":
-        bin.append("ps" +codeln[10:])
+        bin.append("ps" +codeln[10:] +"!")
     elif codeln[:10] == "print var ":
         bin.append("pv" +codeln[10])
     elif codeln[:11] == "var.create ":
